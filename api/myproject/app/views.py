@@ -6,8 +6,12 @@ from datetime import timedelta
 import requests
 import base64
 import json
+import logging
 from ninja import Router
 from .models import User
+
+# Set up logging
+logger = logging.getLogger(__name__)
 
 router = Router()
 
@@ -113,8 +117,11 @@ def spotify_callback(request, code: str = None, error: str = None):
             }
         )
         
-        if not created:
+        if created:
+            logger.info(f"New user created: {user.username} (Spotify ID: {spotify_id})")
+        else:
             # Update existing user's tokens and profile
+            logger.info(f"Existing user updated: {user.username} (Spotify ID: {spotify_id})")
             user.spotify_access_token = access_token
             if refresh_token:
                 user.spotify_refresh_token = refresh_token
