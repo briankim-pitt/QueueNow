@@ -1,4 +1,18 @@
-Django>=5.2,<5.3
-django-ninja>=1.0.0
-requests>=2.31.0
-python-dotenv>=1.0.0 
+Django==5.2
+django-ninja==1.1.0
+requests==2.31.0
+python-dotenv==1.0.0
+django-cors-headers==4.7.0
+
+# Database adapters for AWS RDS
+psycopg2-binary==2.9.9  # For PostgreSQL (recommended)
+# mysqlclient==2.2.0    # For MySQL (uncomment if using MySQL)
+
+# Production server
+gunicorn==21.2.0
+
+# AWS SDK (optional - for DynamoDB, S3, etc.)
+boto3==1.34.0
+
+# Additional production dependencies
+whitenoise==6.6.0  # For serving static files 
